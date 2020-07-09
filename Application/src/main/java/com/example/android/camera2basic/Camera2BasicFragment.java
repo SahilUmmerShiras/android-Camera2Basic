@@ -138,6 +138,7 @@ public class Camera2BasicFragment extends Fragment
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture texture, int width, int height) {
             openCamera(width, height);
+            configureTransform(width, height);
         }
 
         @Override
@@ -448,6 +449,7 @@ public class Camera2BasicFragment extends Fragment
         // the SurfaceTextureListener).
         if (mTextureView.isAvailable()) {
             openCamera(mTextureView.getWidth(), mTextureView.getHeight());
+            configureTransform(mTextureView.getWidth(), mTextureView.getHeight());
         } else {
             mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
         }
@@ -456,6 +458,7 @@ public class Camera2BasicFragment extends Fragment
     @Override
     public void onPause() {
         closeCamera();
+
         stopBackgroundThread();
         super.onPause();
     }
